@@ -35,6 +35,7 @@ print(correctDtypes_df.dtypes)
 # drop qualitative columns
 quant_df = correctDtypes_df.copy()
 quant_df=quant_df.drop(['label', 'region'], axis=1)
+quant_df.to_csv('clean_dataset.csv', index=False)
 print(quant_df)
 
 ## Instatiate kmeans
