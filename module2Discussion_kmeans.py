@@ -39,8 +39,20 @@ print(quant_df)
 
 ## Instatiate kmeans
 kmeans_objectCustomers = KMeans(n_clusters=3, max_iter=100)
-kmeans_customers = kmeans_objectCustomers.fit(quant_df)
+kmeans_clusters = kmeans_objectCustomers.fit(quant_df)
 
-# get labels
-labels_customers = kmeans_customers.labels_
-print(labels_customers)
+# get cluster labels
+labels_clusters = kmeans_clusters.labels_
+print(labels_clusters)
+
+# add cluster assignments back into data for later use
+cluster_df = quant_df.copy()
+cluster_df['kmeans_cluster'] = labels_clusters
+print(cluster_df)
+
+# create a pairplot of all variables colored by cluster
+sns.pairplot(cluster_df, hue='kmeans_cluster', palette='viridis', 
+             vars=['age', 'income', 'monthly_purchases'])
+plt.suptitle('Cluster Visualization', y=1.02, fontsize=16)
+plt.show()
+
