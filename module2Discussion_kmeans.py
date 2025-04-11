@@ -56,3 +56,16 @@ sns.pairplot(cluster_df, hue='kmeans_cluster', palette='viridis',
 plt.suptitle('Cluster Visualization', y=1.02, fontsize=16)
 plt.show()
 
+# predict a new vector
+# Create a new customer vector
+new_customer = {
+    'age': 40,
+    'income': 55000,
+    'monthly_purchases': 550
+}
+
+# Create a DataFrame for our new customer
+new_customer_df = pd.DataFrame([new_customer])
+
+predict = kmeans_objectCustomers.predict(new_customer_df)
+print(f"Predicted cluster for new customer: {predict}\n")
